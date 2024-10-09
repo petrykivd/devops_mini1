@@ -1,23 +1,23 @@
 services:
-  db:
-    container_name: postgres
-    image: postgres:13
-    env_file:
-      - .env
-    environment:
-      - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_PORT=${DB_PORT}
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    container_name: redis
-    image: redis:latest
-    environment:
-      REDIS_URL: "redis://${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}"
+#  db:
+#    container_name: postgres
+#    image: postgres:13
+#    env_file:
+#      - .env
+#    environment:
+#      - POSTGRES_HOST=${DB_HOST}
+#      - POSTGRES_PORT=${DB_PORT}
+#      - POSTGRES_DB=${DB_NAME}
+#      - POSTGRES_USER=${DB_USER}
+#      - POSTGRES_PASSWORD=${DB_PASSWORD}
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#
+#  redis:
+#    container_name: redis
+#    image: redis:latest
+#    environment:
+#      REDIS_URL: "redis://${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}"
 
   backend_rds:
     container_name: backend_rds
@@ -26,8 +26,8 @@ services:
         dockerfile: backend_rds/Dockerfile
     env_file:
       - .env
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     ports:
       - "8000:8000"
     command:
@@ -42,8 +42,8 @@ services:
         dockerfile: backend_redis/Dockerfile
     env_file:
       - .env
-    depends_on:
-      - redis
+#    depends_on:
+#      - redis
     ports:
       - "8001:8001"
     command:
@@ -61,5 +61,5 @@ services:
     volumes:
       - ./frontend/templates:/usr/share/nginx/html
 
-volumes:
-  postgres_data:
+#volumes:
+#  postgres_data:
