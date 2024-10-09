@@ -8,6 +8,6 @@ RUN chmod +x wait_for_postgres.sh
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend_rds/. .
+COPY . .
 
 CMD ["./wait_for_postgres.sh"]

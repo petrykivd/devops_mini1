@@ -23,7 +23,7 @@ services:
     container_name: backend_rds
     build:
         context: .
-        dockerfile: ./dockerfiles/backend_rds
+        dockerfile: backend_rds/Dockerfile
     env_file:
       - .env
     depends_on:
@@ -39,7 +39,7 @@ services:
     container_name: backend_redis
     build:
         context: .
-        dockerfile: ./dockerfiles/backend_redis
+        dockerfile: backend_redis/Dockerfile
     env_file:
       - .env
     depends_on:
@@ -55,7 +55,7 @@ services:
     container_name: frontend
     build:
         context: .
-        dockerfile: ./dockerfiles/nginx
+        dockerfile: frontend/Dockerfile
     ports:
       - "80:80"
     volumes:
