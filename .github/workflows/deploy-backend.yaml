@@ -3,7 +3,7 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - main  # Вказуємо, що деплой буде виконуватись при пуші в main
+      - main
 
 jobs:
   deploy:
