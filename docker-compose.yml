@@ -1,0 +1,28 @@
+services:
+  backend_rds:
+    container_name: backend_rds
+    build:
+        context: .
+        dockerfile: backend_rds/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command:
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend_rds:/app
+
+  backend_redis:
+    container_name: backend_redis
+    build:
+        context: .
+        dockerfile: backend_redis/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8001:8001"
+    command:
+      sh -c "python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - ./backend_redis:/app
