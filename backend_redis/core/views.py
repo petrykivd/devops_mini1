@@ -20,7 +20,9 @@ def test_connection(request):
             password=settings.REDIS_PASSWORD
         )
         # Ping the Redis server
+        print(f"Trying to connect to Redis: {settings.REDIS_HOST}:{settings.REDIS_PORT}-{settings.REDIS_DB}-{settings.REDIS_PASSWORD}")
         r.ping()
+        print("Connected to Redis")
         return JsonResponse({'message': 'Connection to Backend Redis is successful!'})
     except redis.RedisError as e:
         logger.error(f"Error connecting to Redis: {e}")
