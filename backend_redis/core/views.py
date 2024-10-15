@@ -12,6 +12,7 @@ def index(request):
 
 def test_connection(request):
     try:
+        print(f"Trying to connect to Redis: {settings.REDIS_HOST}:{settings.REDIS_PORT}-{settings.REDIS_DB}-{settings.REDIS_PASSWORD}")
         # Create a Redis client using settings
         r = redis.Redis(
             host=settings.REDIS_HOST,
